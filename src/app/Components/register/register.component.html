@@ -1,0 +1,28 @@
+<form role="form" [formGroup]="registerForm" (submit)="onSubmit()">
+  <div fxFlex fxFlex="50%" fxFlexOffset="25%">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        Register
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card class="form-container">
+      <mat-form-field>
+        <input type="text" id="email" formControlName="email" matInput placeholder="email address">
+        <mat-hint>Enter your email address here</mat-hint>
+        <mat-error>Email address is required.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" id="password" formControlName="password" matInput placeholder="Password">
+        <mat-hint>enter your password here</mat-hint>
+        <mat-error>Password is required.</mat-error>
+      </mat-form-field>
+      <h4>By clicking “Register” below, you agree to our terms of service and privacy statement.</h4>
+      <div class="form-full-width">
+        <button type="submit" mat-raised-button color="accent" [disabled]="!registerForm.valid" class="form-full-width">
+          <mat-icon>add_circle</mat-icon>
+          Register
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</form>

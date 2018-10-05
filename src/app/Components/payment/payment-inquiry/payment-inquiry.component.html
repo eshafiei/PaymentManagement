@@ -1,0 +1,25 @@
+<form role="form" [formGroup]="form">
+  <mat-card *ngIf="!isValid">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        Enter your Account number
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-form-field appearance="outline" class="form-full-width">
+      <mat-label>Account number</mat-label>
+      <input id="accountNbr" type="number" name="accountNbr" matInput [matKeyboard] required placeholder="12345678" [(ngModel)]="accountNbr"
+        [(value)]="accountNbr" formControlName="accountNbr">
+      <mat-error>Account number is required.</mat-error>
+    </mat-form-field>
+    <div>
+      <button type="submit" mat-raised-button color="accent" class="form-full-width" [disabled]="!form.valid" (click)="searchAccounts()">
+        Enter
+        <mat-icon>forward</mat-icon>
+      </button>
+    </div>
+    
+  </mat-card>
+  <mat-card *ngIf="isValid">
+    <paymentwizard [accountsInfo]="accountsInfo"></paymentwizard>
+  </mat-card>
+</form>

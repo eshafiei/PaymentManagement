@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <span>Payment details</span>
+</mat-toolbar>
+<mat-card>
+  <h4>Payment Amount: ${{paymentAmount | number : '1.2-2'}}</h4>
+  <h4>Transaction Fee: ${{transactionFee | number : '1.2-2'}}</h4>
+  <h4>Total Payment Amount:
+    <b id="totalPaymentAmount">${{totalPaymentAmount | number : '1.2-2'}}</b>
+  </h4>
+</mat-card>

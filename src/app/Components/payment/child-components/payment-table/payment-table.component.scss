@@ -1,0 +1,37 @@
+.table-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 800px;
+}
+  
+.mat-table {
+    overflow: auto;
+    max-height: 800px;
+}
+
+mat-cell, mat-header-cell {
+  overflow: visible;
+}
+
+.form-90-width {
+    width: 90%;
+}
+
+.mat-table {
+  display: table;
+  width: 100%;
+
+  > .mat-header-row, > .mat-row {
+      display: table-row;
+      padding: 0;
+      border: none;
+
+      > .mat-header-cell, > .mat-cell {
+          display: table-cell;
+          height: 48px;
+          vertical-align: middle;
+
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      }
+  }
+}

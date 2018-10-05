@@ -1,0 +1,44 @@
+<!-- <data-collection [displayedColumns]="columns"></data-collection> -->
+<br/>
+<h5 *ngIf="noDataMessage">{{ noDataMessage }}</h5>
+<table class="table table-striped" [mfData]="data" *ngIf="data" #mf="mfDataTable" [mfRowsOnPage]="8">
+    <thead style="background-color: #78d2ec;">
+        <tr>
+            <th>
+                <mfDefaultSorter by="memberNo">Member No</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="memberSep">Member Sep</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="lastName">Name</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="amountDue">Amount Due</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="dueDate">Due Date</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="status">Status</mfDefaultSorter>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of mf.data">
+            <td>{{ item.memberNo }}</td>
+            <td>{{ item.memberSep }}</td>
+            <td>{{ item.firstName }} {{ item.lastName }}</td>
+            <td>{{ item.amountDue | currency : 'USD' : 'true' : '1.2-2'  }}</td>
+            <td>{{ item.dueDate | date: 'MM/dd/yy'}}</td>
+            <td>{{item.status == true ? 'Active' : 'Inactive' }}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
+</table>

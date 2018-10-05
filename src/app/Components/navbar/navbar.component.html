@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxFlex fxFlex="62%" fxFlexOffset="19%">
+    <button mat-button routerLink="">
+      <mat-icon>business</mat-icon>
+    </button>
+    <div>
+      <button mat-button routerLink="">
+        <mat-icon>home</mat-icon>
+        Home
+      </button>
+      <button mat-button routerLink="/account">
+        <mat-icon>account_balance</mat-icon>
+        Account
+      </button>
+      <button mat-button routerLink="/paymentinquiry">
+        <mat-icon>account_balance_wallet</mat-icon>
+        Payment
+      </button>
+      <!-- <button mat-button [mat-menu-trigger-for]="payment" fxHide="false">
+        <mat-icon>money</mat-icon>
+        Payment
+      </button> -->
+    </div>
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+    <div *ngIf="!isLoggedIn">
+      <button mat-button routerLink="/register">
+        <mat-icon>add_circle</mat-icon>
+        Register
+      </button>
+    </div>
+    <div *ngIf="!isLoggedIn">
+      <button mat-button routerLink="/login">
+        <mat-icon>person</mat-icon>
+        Sign-in
+      </button>
+    </div>
+    <div *ngIf="isLoggedIn" (click)="logout()">
+      <button mat-button routerLink="/login">
+        <mat-icon>power</mat-icon>
+        Log out
+      </button>
+    </div>
+    <div *ngIf="isLoggedIn">
+      <h4 id="welcomeMessage">Welcome {{ authenticatedUser }}</h4>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- <mat-menu #payment="matMenu">
+  <button mat-menu-item routerLink="/conveniencefeecalc">Convenience fee calculator</button>
+</mat-menu> -->

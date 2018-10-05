@@ -1,0 +1,22 @@
+<div>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      Account management
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card>
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <button type="button" mat-raised-button color="warn" (click)="AddAccount()">
+          <mat-icon>add</mat-icon>
+          Add account
+        </button>
+        <button type="button" mat-raised-button color="warn" disabled="selectedAccount">
+          <mat-icon>add</mat-icon>
+          Add child account
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <account-list></account-list>
+  </mat-card>
+</div>

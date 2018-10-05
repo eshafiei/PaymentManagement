@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <div fxFlex fxFlex="100%">
+    <nav-bar (userLoggedIn)="loggedIn($event)"></nav-bar>
+  </div>
+</div>
+<div>
+  <div fxFlex fxFlex="58%" fxFlexOffset="21%">
+    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="medium" color="#fff" type="ball-atom"></ngx-spinner>
+    <!-- <mat-card style="margin-bottom: 10px;" align="center">
+      <img src="../../assets/logo3.png" alt="Logo" width="80%" height="80%" />
+    </mat-card> -->
+    <br/>
+    <router-outlet></router-outlet>
+    <toast-container></toast-container>
+  </div>
+</div>

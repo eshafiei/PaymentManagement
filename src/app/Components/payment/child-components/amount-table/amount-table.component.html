@@ -1,0 +1,25 @@
+<form role="form" [formGroup]="ccAmountForm">
+  <div class="table-container">
+    <mat-table #table [dataSource]="dataSource">
+      <!-- Account Number Column -->
+      <ng-container matColumnDef="MemberSep">
+        <mat-header-cell *matHeaderCellDef> Account number </mat-header-cell>
+        <mat-cell *matCellDef="let account"> {{account.MemberSep}} </mat-cell>
+      </ng-container>
+      <!-- Amount Due Column -->
+      <ng-container matColumnDef="PaymentAmount">
+        <mat-header-cell *matHeaderCellDef> Payment Amount </mat-header-cell>
+        <mat-cell *matCellDef="let account">
+          <!-- {{account.AmountDue}} -->
+          <mat-form-field>
+            <input type="number" #paymentAmount matInput [matKeyboard] formControlName="paymentAmount" [(value)]="account.AmountDue" (change)="UpdatePayments()" min="0.01">
+            <mat-error>Payment amount is required.</mat-error>
+          </mat-form-field>
+          <mat-error *ngIf="paymentAmount.error">Payment amount is required.</mat-error>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</form>

@@ -1,0 +1,29 @@
+<form role="form" [formGroup]="loginForm" (submit)="onSubmit()">
+  <div fxFlex fxFlex="50%" fxFlexOffset="25%">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        Login
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-card class="form-container">
+      <mat-form-field>
+        <input type="text" formControlName="email" matInput required placeholder="email address">
+        <mat-hint>enter your email address here</mat-hint>
+        <mat-error>email is required.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" formControlName="password" matInput required placeholder="Password">
+        <mat-hint>enter your password here</mat-hint>
+        <mat-error>Password is required.</mat-error>
+      </mat-form-field>
+      <br/>
+      <br/>
+      <div class="form-full-width">
+        <button type="submit" mat-raised-button color="accent" class="form-full-width">
+          <mat-icon>lock</mat-icon>
+          Sign-in
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</form>

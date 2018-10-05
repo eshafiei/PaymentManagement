@@ -1,0 +1,100 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    RPS payment wizard
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-horizontal-stepper #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form>
+      <ng-template matStepLabel>Accounts</ng-template>
+      <div>
+        <accounttable [accountsInfo]="accountsInfo"></accounttable>
+      </div>
+      <br/>
+      <br/>
+      <mat-card-actions align="center">
+        <button mat-raised-button (click)="first(stepper)" color="accent" style="width: 30%;">
+          Next
+          <mat-icon>forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Amounts</ng-template>
+      <div class="form-60-width">
+        <amounttable (numberOfPaymentsEvent)="getPayments($event)"></amounttable>
+      </div>
+      <br/>
+      <br/>
+      <mat-card-actions align="center">
+        <button mat-raised-button matStepperPrevious color="accent" style="width: 30%;">
+          <mat-icon>undo</mat-icon>
+          Previous
+        </button>
+        <button mat-raised-button (click)="second(stepper)" color="accent" style="width: 30%;">
+          Next
+          <mat-icon>forward</mat-icon>
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Payment</ng-template>
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="gappx">
+        <div fxFlex="35%">
+          <div fxLayout="column" class="form-90-width">
+            <mat-form-field>
+              <mat-select placeholder="Payment type" (selectionChange)="PopulatePayment($event.value)">
+                <mat-option *ngFor="let paymentType of paymentTypes" [value]="paymentType.value">
+                  {{paymentType.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column">
+            <paymenttable class="form-90-width"></paymenttable>
+          </div>
+        </div>
+        <div fxFlex="34%" fxLayout="column" class="form-full-width" *ngIf="creditCardPayment">
+          <credit-payment class="form-90-width" (paymentProcessedEvent)="paymentProcessed($event, stepper)"></credit-payment>
+        </div>
+        <div fxFlex="31%" fxLayout="column" class="form-full-width" *ngIf="creditCardPayment">
+          <payment-detail [paymentsAmount]="amountOfPayments"></payment-detail>
+        </div>
+      </div>
+      <br/>
+      <br/>
+      <mat-card-actions align="center">
+        <button mat-raised-button matStepperPrevious color="accent" style="width: 30%;">
+          <mat-icon>undo</mat-icon>
+          Previous
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <h3>Thank you for your payment!</h3>
+    <br/>
+    <br/>
+    <mat-card-actions align="center">
+      <button mat-raised-button (click)="reset();stepper.reset();" color="accent">
+        <mat-icon>done</mat-icon>
+        Done
+      </button>
+    </mat-card-actions>
+  </mat-step>
+</mat-horizontal-stepper>
+<mat-card-actions align="center">
+  <button id="cancelPayment" mat-raised-button color="warn" class="form-full-width" (click)="cancelPayment()" fxFlex="80%"
+    fxFlexOffset="10%">
+    <mat-icon>cancel</mat-icon>
+    Cancel payment
+  </button>
+</mat-card-actions>
+
+<!-- 4d8dcd abi-->
+<!-- e0b640  narenji--> 

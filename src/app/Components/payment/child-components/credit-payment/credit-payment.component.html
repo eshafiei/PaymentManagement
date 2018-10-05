@@ -1,0 +1,62 @@
+<form role="form" [formGroup]="ccPaymentForm" name="ccForm">
+  <div fxLayout="column">
+    <div class="form-full-width">
+      <table class="form-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="form-full-width">
+              <mat-label>Card number</mat-label>
+              <input id="cc-number" type="tel" autocomplete="cc-number" #ccNumber ccNum matInput [matKeyboard] placeholder="Credit card number"
+                formControlName="cardNumber" (change)="CardTypeCheck(ccNumber)">
+              <mat-error *ngFor="let validation of ccPayment_validation_messages.cardNumber">
+                <mat-error class="error-message" *ngIf="ccPaymentForm.get('cardNumber').hasError(validation.type) 
+                && (ccPaymentForm.get('cardNumber').dirty || ccPaymentForm.get('cardNumber').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <span id="ccTypeSpan" style="display: none;">
+              <img id="ccType" src="" style="float: right;" width="48" height="48" />
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="form-full-width">
+      <mat-form-field class="form-full-width">
+        <mat-label>Expiration date</mat-label>
+        <input type="tel" id="cc-exp" autocomplete="cc-exp" ccExp matInput [matKeyboard] placeholder="mm/yy" formControlName="cardExpDate">
+        <mat-error *ngFor="let validation of ccPayment_validation_messages.cardExpDate">
+          <mat-error class="error-message" *ngIf="ccPaymentForm.get('cardExpDate').hasError(validation.type) && 
+          (ccPaymentForm.get('cardExpDate').dirty || ccPaymentForm.get('cardExpDate').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-full-width">
+      <mat-form-field class="form-full-width">
+        <mat-label>Cvc</mat-label>
+        <input type="tel" autocomplete="cc-cvc" id="cc-csc" ccCvc matInput [matKeyboard] placeholder="Cvc" formControlName="cardCvc">
+        <mat-error *ngFor="let validation of ccPayment_validation_messages.cardCvc">
+          <mat-error class="error-message" *ngIf="ccPaymentForm.get('cardCvc').hasError(validation.type) && 
+          (ccPaymentForm.get('cardCvc').dirty || ccPaymentForm.get('cardCvc').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-full-width">
+      <mat-form-field class="form-full-width">
+        <mat-label>Zip code</mat-label>
+        <input id="zip" type="tel" matInput [matKeyboard] placeholder="Zip code" formControlName="zip">
+        <mat-error *ngFor="let validation of ccPayment_validation_messages.zip">
+          <mat-error class="error-message" *ngIf="ccPaymentForm.get('zip').hasError(validation.type) && 
+          (ccPaymentForm.get('zip').dirty || ccPaymentForm.get('zip').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div align="center" class="form-full-width">
+    <button type="submit" mat-raised-button (click)="processPayment()" color="accent" class="form-full-width">
+      <mat-icon>payment</mat-icon>
+      process payment
+    </button>
+  </div>
+</form>

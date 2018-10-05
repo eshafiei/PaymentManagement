@@ -1,0 +1,51 @@
+<div class="table-container">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+          <!-- (click)="selectAll()" -->
+        <mat-checkbox ng-checked="allChecked"
+                      (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation(); isSelected(row);"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Account Number Column -->
+    <ng-container matColumnDef="MemberSep">
+      <mat-header-cell *matHeaderCellDef> Account number </mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.memberSep}} </mat-cell>
+    </ng-container>
+
+    <!-- Service Address Column -->
+    <ng-container matColumnDef="Name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.name}} </mat-cell>
+    </ng-container>
+
+      <!-- Current Balance Column -->
+    <ng-container matColumnDef="CurrentBalance">
+      <mat-header-cell *matHeaderCellDef> Current balance </mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.balance}} </mat-cell>
+    </ng-container>
+
+      <!-- Amount Due Column -->
+    <ng-container matColumnDef="AmountDue">
+      <mat-header-cell *matHeaderCellDef> Amount due </mat-header-cell>
+      <mat-cell *matCellDef="let account"> {{account.amountDue}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="selection.toggle(row); isSelected(row)">
+    </mat-row>
+  </mat-table>
+</div>
